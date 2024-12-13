@@ -4,8 +4,8 @@ from usuario.serializers import UsuarioSerializer
 from destino.serializers import DestinoSerializer
 
 class PublicacionSerializer(serializers.ModelSerializer):
-    usuario = UsuarioSerializer(read_only=True)  # Datos anidados de solo lectura para Usuario
-    destino = DestinoSerializer(read_only=True)  # Datos anidados de solo lectura para Destino
+    usuario = UsuarioSerializer(read_only=True)
+    destino = DestinoSerializer(read_only=True)
 
     class Meta:
         model = Publicacion
