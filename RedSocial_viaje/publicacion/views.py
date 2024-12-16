@@ -52,7 +52,7 @@ def publicacion_delete(request, pk):
 
 def publicacion_search(request):
     # URL correcta basada en tus urls.py
-    api_url = 'http://127.0.0.1:8000/publicaciones/filtrar/'  
+    api_url = 'http://127.0.0.1:8000/api/publicaciones/filtrar/'  
     params = {}
 
     # Recupera los parámetros de búsqueda desde GET
@@ -70,4 +70,16 @@ def publicacion_search(request):
     else:
         publicaciones = []  # Si la API falla, devuelve una lista vacía
 
-    return render(request, 'publicacion_search.html', {'publicaciones': publicaciones})
+    # Obtener la lista de usuarios y destinos
+    usuarios = Usuario.objects.all()
+    destinos = Destino.objects.all()
+
+    return render(
+        request, 
+        'publicacion_search.html', 
+        {
+            'publicaciones': publicaciones,
+            'usuarios': usuarios,  # Lista de usuarios para el select
+            'destinos': destinos   # Lista de destinos para el select
+        }
+    )
