@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% if publicacion %}Editar Publicación{% else %}Crear Publicación{% endif %}</title>
+</head>
+<body>
+    <h1>{% if publicacion %}Editar Publicación{% else %}Crear Publicación{% endif %}</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="usuario_id">Usuario:</label>
+        <select name="usuario_id" id="usuario_id" required>
+            {% for usuario in usuarios %}
+                <option value="{{ usuario.id }}" {% if publicacion and publicacion.usuario.id == usuario.id %}selected{% endif %}>
+                    {{ usuario }}
+                </option>
+            {% endfor %}
+        </select>
+        <br>
+
+        <label for="destino_id">Destino:</label>
+        <select name="destino_id" id="destino_id" required>
+            {% for destino in destinos %}
+                <option value="{{ destino.id }}" {% if publicacion and publicacion.destino.id == destino.id %}selected{% endif %}>
+                    {{ destino }}
+                </option>
+            {% endfor %}
+        </select>
+        <br>
+
+        <label for="texto">Texto:</label>
+        <textarea name="texto" id="texto" required>{{ publicacion.texto|default_if_none:'' }}</textarea>
+        <br>
+
+        <button type="submit">{% if publicacion %}Guardar Cambios{% else %}Crear Publicación{% endif %}</button>
+        <a href="{% url 'publicacion_list' %}">Cancelar</a>
+    </form>
+</body>
+</html>
