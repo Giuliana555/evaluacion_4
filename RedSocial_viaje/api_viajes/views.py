@@ -4,7 +4,13 @@ from rest_framework.response import Response
 from destino.models import Destino
 from .serializers import DestinoSerializer, PublicacionSerializer
 from publicacion.models import Publicacion
+from django.contrib.auth import authenticate
+from django.http import JsonResponse
+from .models import Token
+from .utils import token_required
 
+
+@token_required
 @api_view(['GET'])
 def listar_destinos(request):
     destinos = Destino.objects.all()
@@ -12,6 +18,7 @@ def listar_destinos(request):
     return Response(serializer.data)
 
 
+@token_required
 @api_view(['GET'])
 def filtrar_publicaciones(request):
     usuario_id = request.query_params.get('usuario', None)
@@ -26,5 +33,19 @@ def filtrar_publicaciones(request):
 
     serializer = PublicacionSerializer(publicaciones, many=True)
     return Response(serializer.data)
+
+
+
+def obtener_token(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(username=username, password=password)
+        if user:
+            token, created = Token.objects.get_or_create(user=user)
+            return JsonResponse({'token': token.key}, status=200)
+        return JsonResponse({'error': 'Credenciales inválidas'}, status=400)
+
 
 # Create your views here.
