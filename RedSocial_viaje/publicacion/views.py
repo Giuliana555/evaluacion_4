@@ -5,10 +5,6 @@ from destino.models import Destino
 import requests
 from usuario.forms import RegistroUsuarioForm
 from django.contrib.auth.decorators import login_required
-<<<<<<< HEAD
-
-=======
->>>>>>> 49b9acdcbb373c37c908215009c43882f55a94c3
 
 # Create your views here.
 
@@ -16,14 +12,10 @@ from django.contrib.auth.decorators import login_required
 # Listar publicaciones
 @login_required
 def publicacion_list(request):
-<<<<<<< HEAD
     """
     Muestra todas las publicaciones. 
     Los botones de editar/eliminar se gestionan desde los templates.
     """
-=======
-
->>>>>>> 49b9acdcbb373c37c908215009c43882f55a94c3
     publicaciones = Publicacion.objects.all()  # Todos los usuarios ven todas las publicaciones
     return render(request, 'publicacion_list.html', {'publicaciones': publicaciones})
 
@@ -64,14 +56,10 @@ def publicacion_create(request):
 # Editar publicación
 @login_required
 def publicacion_edit(request, pk):
-<<<<<<< HEAD
     """
     Permite editar una publicación.
     Restricción: Solo el autor o un superusuario pueden editar.
     """
-=======
-
->>>>>>> 49b9acdcbb373c37c908215009c43882f55a94c3
     publicacion = get_object_or_404(Publicacion, pk=pk)
 
     if request.user != publicacion.usuario and not request.user.is_superuser:
@@ -90,14 +78,10 @@ def publicacion_edit(request, pk):
 # Eliminar publicación
 @login_required
 def publicacion_delete(request, pk):
-<<<<<<< HEAD
     """
     Permite eliminar una publicación.
     Restricción: Solo el autor o un superusuario pueden eliminar.
     """
-=======
-
->>>>>>> 49b9acdcbb373c37c908215009c43882f55a94c3
     publicacion = get_object_or_404(Publicacion, pk=pk)
 
     if request.user != publicacion.usuario and not request.user.is_superuser:
