@@ -7,12 +7,6 @@ from publicacion.models import Publicacion
 from django.contrib.auth import authenticate
 from django.http import JsonResponse
 from .models import Token
-<<<<<<< HEAD
-from .utils import token_required
-
-
-=======
->>>>>>> 49b9acdcbb373c37c908215009c43882f55a94c3
 
 @api_view(['GET'])
 def listar_destinos(request):
@@ -37,11 +31,8 @@ def filtrar_publicaciones(request):
     serializer = PublicacionSerializer(publicaciones, many=True)
     return Response(serializer.data)
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 49b9acdcbb373c37c908215009c43882f55a94c3
 def obtener_token(request):
     if request.method == 'POST':
         username = request.POST.get('username')
