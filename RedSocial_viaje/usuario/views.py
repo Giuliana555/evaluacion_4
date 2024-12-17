@@ -24,7 +24,11 @@ def usuario_edit(request, pk):
         usuario.correo = request.POST.get('correo')
         usuario.ubicacion = request.POST.get('ubicacion')
         usuario.save()
-        return redirect('usuario_list')  # Redirige a publicaciones
+
+        if request.user.is_superuser:
+            return redirect('usuario_list')  # Redirige al listado de usuarios si es admin
+        else:
+            return redirect('publicacion_list')
 
     return render(request, 'usuario_form.html', {'usuario': usuario})
 
