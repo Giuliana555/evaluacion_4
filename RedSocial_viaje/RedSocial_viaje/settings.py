@@ -63,11 +63,7 @@ ROOT_URLCONF = 'RedSocial_viaje.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-<<<<<<< HEAD
         'DIRS': [], 
-=======
-        'DIRS': [],
->>>>>>> 49b9acdcbb373c37c908215009c43882f55a94c3
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -141,15 +137,12 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     )
 }
-<<<<<<< HEAD
 
 LOGIN_URL = '/accounts/login/'  
 LOGIN_REDIRECT_URL = '/publicacion/' 
 LOGOUT_REDIRECT_URL = '/accounts/login/'  
 
 
-=======
->>>>>>> 49b9acdcbb373c37c908215009c43882f55a94c3
 
 LOGIN_URL = '/accounts/login/'  
 LOGIN_REDIRECT_URL = '/publicacion/' 
