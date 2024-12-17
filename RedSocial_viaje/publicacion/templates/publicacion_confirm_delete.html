@@ -7,7 +7,7 @@
 <body>
     <h1>¿Estás seguro de que deseas eliminar esta publicación?</h1>
     <p><strong>ID:</strong> {{ publicacion.id }}</p>
-    <p><strong>Usuario:</strong> {{ publicacion.usuario }}</p>
+    <p><strong>Usuario:</strong> {{ publicacion.usuario.username }}</p>
     <p><strong>Destino:</strong> {{ publicacion.destino }}</p>
     <p><strong>Texto:</strong> {{ publicacion.texto }}</p>
     <form method="POST">

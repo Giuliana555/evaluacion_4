@@ -7,28 +7,28 @@
 <body>
     <h1>Búsqueda de Publicaciones</h1>
     <form method="GET">
-        <label for="usuario_id">Usuario:</label>
-        <select name="usuario_id" id="usuario_id">
+        <label for="usuario">Usuario:</label>
+        <select name="usuario" id="usuario">
             <option value="">-- Todos los usuarios --</option>
             {% for usuario in usuarios %}
-                <option value="{{ usuario.id }}" {% if request.GET.usuario_id == usuario.id|stringformat:"s" %}selected{% endif %}>
+                <option value="{{ usuario.id }}" {% if request.GET.usuario == usuario.id|stringformat:"s" %}selected{% endif %}>
                     {{ usuario }}
                 </option>
             {% endfor %}
         </select>
         <br>
-
-        <label for="destino_id">Destino:</label>
-        <select name="destino_id" id="destino_id">
+    
+        <label for="destino">Destino:</label>
+        <select name="destino" id="destino">
             <option value="">-- Todos los destinos --</option>
             {% for destino in destinos %}
-                <option value="{{ destino.id }}" {% if request.GET.destino_id == destino.id|stringformat:"s" %}selected{% endif %}>
+                <option value="{{ destino.id }}" {% if request.GET.destino == destino.id|stringformat:"s" %}selected{% endif %}>
                     {{ destino }}
                 </option>
             {% endfor %}
         </select>
         <br>
-
+    
         <button type="submit">Buscar</button>
     </form>
 
@@ -57,5 +57,10 @@
     {% else %}
         <p>No se encontraron publicaciones.</p>
     {% endif %}
+    <br>
+    <!-- Botón para volver a la lista de publicaciones -->
+    <a href="{% url 'publicacion_list' %}">
+        <button type="button">Volver a la lista de publicaciones</button>
+    </a>
 </body>
 </html>
