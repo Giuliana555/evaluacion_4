@@ -7,8 +7,12 @@ from publicacion.models import Publicacion
 from django.contrib.auth import authenticate
 from django.http import JsonResponse
 from .models import Token
+from rest_framework.pagination import PageNumberPagination
 
 
+class PublicacionPagination(PageNumberPagination):
+    page_size_query_param = 'page_size'  # Permitir que el cliente pase el tamaño de página con el parámetro 'page_size'
+    max_page_size = 15
 
 @api_view(['GET'])
 def listar_destinos(request):
@@ -29,8 +33,11 @@ def filtrar_publicaciones(request):
         publicaciones = publicaciones.filter(usuario__id=usuario_id)
     if destino_id:
         publicaciones = publicaciones.filter(destino__id=destino_id)
+    
+    paginator = PublicacionPagination()
+    result_page = paginator.paginate_queryset(publicaciones, request)
 
-    serializer = PublicacionSerializer(publicaciones, many=True)
+    serializer = PublicacionSerializer(result_page, many=True)
     return Response(serializer.data)
 
 
