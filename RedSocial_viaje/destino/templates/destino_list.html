@@ -40,5 +40,9 @@
     {% else %}
         <p>No hay destinos disponibles.</p>
     {% endif %}
+    <br>
+    <a href="{% url 'publicacion_list' %}">
+        <button type="button">Volver a la lista de publicaciones</button>
+    </a>
 </body>
 </html>
