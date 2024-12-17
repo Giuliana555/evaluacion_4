@@ -46,5 +46,4 @@ def obtener_token(request):
             return JsonResponse({'token': token.key}, status=200)
         return JsonResponse({'error': 'Credenciales inválidas'}, status=400)
 
-
 # Create your views here.
