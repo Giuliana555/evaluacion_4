@@ -1,16 +1,26 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
 </head>
 <body>
-    <h2>Iniciar Sesión</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Iniciar Sesión</button>
-    </form>
-    <p>¿No tienes cuenta? <a href="{% url 'register' %}">Crea una cuenta aquí</a></p>
+    <div class="container">
+        <div class="form-container">
+            <img src="https://infoturlatam.com/wp-content/uploads/2023/07/z-viajero.jpg" alt="Imagen de Viaje" class="login-image">
+            <h2>Iniciar Sesión</h2>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.as_p }}
+                </div>
+                <button type="submit" class="btn">Iniciar Sesión</button>
+            </form>
+            <p class="register-link">¿No tienes cuenta? <a href="{% url 'register' %}">Crea una cuenta aquí</a></p>
+        </div>
+    </div>
 </body>
 </html>
