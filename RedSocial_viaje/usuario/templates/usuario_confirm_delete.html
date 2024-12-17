@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% if destino %}Editar{% else %}Crear{% endif %} Destino</title>
+</head>
+<body>
+    <h1>{% if destino %}Editar{% else %}Crear{% endif %} Destino</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <label for="pais">País:</label>
+        <input type="text" name="pais" id="pais" value="{{ destino.pais|default:'' }}" required>
+        <br>
+
+        <label for="ciudad">Ciudad:</label>
+        <input type="text" name="ciudad" id="ciudad" value="{{ destino.ciudad|default:'' }}" required>
+        <br>
+
+        <label for="descripcion">Descripción:</label>
+        <textarea name="descripcion" id="descripcion" required>{{ destino.descripcion|default:'' }}</textarea>
+        <br>
+
+        <button type="submit">Guardar</button>
+    </form>
+
+    <a href="{% url 'destino_list' %}">
+        <button>Cancelar</button>
+    </a>
+</body>
+</html>
