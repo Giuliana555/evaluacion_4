@@ -3,19 +3,13 @@ from .models import Usuario
 
 # Create your views here.
 
-
-# Listar usuarios
-"""def usuario_list(request):
-    usuarios = Usuario.objects.all()
-    return render(request, 'usuario/usuario_list.html', {'usuarios': usuarios})"""
-
 # Crear usuario
 def usuario_create(request):
     if request.method == 'POST':
         nombre = request.POST.get('nombre')
         correo = request.POST.get('correo')
         ubicacion = request.POST.get('ubicacion')
-        
+
         # Crear instancia de Usuario y guardar en la base de datos
         Usuario.objects.create(nombre=nombre, correo=correo, ubicacion=ubicacion)
         return redirect('usuario_list')
@@ -39,3 +33,4 @@ def usuario_delete(request, pk):
         usuario.delete()
         return redirect('usuario_list')
     return render(request, 'usuario/usuario_confirm_delete.html', {'usuario': usuario})
+

@@ -3,16 +3,20 @@ from .models import Publicacion
 from usuario.models import Usuario
 from destino.models import Destino
 import requests
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 
 # Listar publicaciones
+@login_required
 def publicacion_list(request):
     publicaciones = Publicacion.objects.all()
     return render(request, 'publicacion_list.html', {'publicaciones': publicaciones})
 
 # Crear publicación
+@login_required
 def publicacion_create(request):
     if request.method == 'POST':
         usuario_id = request.POST.get('usuario_id')
@@ -30,6 +34,7 @@ def publicacion_create(request):
     return render(request, 'publicacion_form.html', {'usuarios': usuarios, 'destinos': destinos})
 
 # Editar publicación
+@login_required
 def publicacion_edit(request, pk):
     publicacion = get_object_or_404(Publicacion, pk=pk)
     if request.method == 'POST':
@@ -43,6 +48,7 @@ def publicacion_edit(request, pk):
     return render(request, 'publicacion_form.html', {'publicacion': publicacion, 'usuarios': usuarios, 'destinos': destinos})
 
 # Eliminar publicación
+@login_required
 def publicacion_delete(request, pk):
     publicacion = get_object_or_404(Publicacion, pk=pk)
     if request.method == 'POST':
@@ -50,6 +56,7 @@ def publicacion_delete(request, pk):
         return redirect('publicacion_list')
     return render(request, 'publicacion_confirm_delete.html', {'publicacion': publicacion})
 
+@login_required
 def publicacion_search(request):
     # URL correcta basada en tus urls.py
     api_url = 'http://127.0.0.1:8000/publicaciones/filtrar/'  
@@ -71,3 +78,13 @@ def publicacion_search(request):
         publicaciones = []  # Si la API falla, devuelve una lista vacía
 
     return render(request, 'publicacion_search.html', {'publicaciones': publicaciones})
+
+def registro(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/accounts/login/')  # Redirigir al login tras el registro
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/register.html', {'form': form})
