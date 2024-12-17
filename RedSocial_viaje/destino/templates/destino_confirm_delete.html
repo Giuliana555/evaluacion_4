@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Eliminar Destino</title>
+</head>
+<body>
+    <h1>Eliminar Destino</h1>
+    <p>¿Estás seguro de que quieres eliminar el destino "<strong>{{ destino.pais }} - {{ destino.ciudad }}</strong>"?</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Sí, eliminar</button>
+    </form>
+
+    <a href="{% url 'destino_list' %}">
+        <button>No, cancelar</button>
+    </a>
+</body>
+</html>
