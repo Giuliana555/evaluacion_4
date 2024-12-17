@@ -148,9 +148,7 @@ def publicacion_search(request):
     # Parámetros de búsqueda desde GET
     if 'usuario' in request.GET and request.GET['usuario']:
     # Parámetros de búsqueda desde GET
-    if 'usuario' in request.GET and request.GET['usuario']:
         params['usuario'] = request.GET['usuario']
-    if 'destino' in request.GET and request.GET['destino']:
     if 'destino' in request.GET and request.GET['destino']:
         params['destino'] = request.GET['destino']
 
