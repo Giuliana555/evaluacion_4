@@ -9,7 +9,7 @@ def usuario_create(request):
         nombre = request.POST.get('nombre')
         correo = request.POST.get('correo')
         ubicacion = request.POST.get('ubicacion')
-        
+
         # Crear instancia de Usuario y guardar en la base de datos
         Usuario.objects.create(nombre=nombre, correo=correo, ubicacion=ubicacion)
         return redirect('usuario_list')
@@ -33,3 +33,4 @@ def usuario_delete(request, pk):
         usuario.delete()
         return redirect('usuario_list')
     return render(request, 'usuario/usuario_confirm_delete.html', {'usuario': usuario})
+

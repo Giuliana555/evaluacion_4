@@ -22,6 +22,10 @@ def publicacion_list(request):
 
 # Crear publicación
 @login_required
+<<<<<<< HEAD
+=======
+@login_required
+>>>>>>> e431b4f308c4ade594ee16bd9b3b60f0b7ad5787
 def publicacion_create(request):
     if request.method == 'POST':
         texto = request.POST.get('texto')
@@ -51,7 +55,10 @@ def publicacion_create(request):
     # Enviar destinos existentes al formulario
     destinos = Destino.objects.all()
     return render(request, 'publicacion_form.html', {'destinos': destinos})
+<<<<<<< HEAD
 
+=======
+>>>>>>> e431b4f308c4ade594ee16bd9b3b60f0b7ad5787
 
 # Editar publicación
 @login_required
@@ -131,6 +138,10 @@ def publicacion_search(request):
         }
     )
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> e431b4f308c4ade594ee16bd9b3b60f0b7ad5787
 def registro(request):
     if request.method == 'POST':
         form = RegistroUsuarioForm(request.POST)  # Usar el formulario personalizado
