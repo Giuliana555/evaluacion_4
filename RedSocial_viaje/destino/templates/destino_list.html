@@ -1,13 +1,16 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Lista de Destinos</title>
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
 </head>
 <body>
     <h1>Lista de Destinos</h1>
     <a href="{% url 'destino_create' %}">
-        <button>Crear Nuevo Destino</button>
+        <button id="btn" >Crear Nuevo Destino</button>
     </a>
     <br><br>
 
@@ -40,5 +43,9 @@
     {% else %}
         <p>No hay destinos disponibles.</p>
     {% endif %}
+    <br>
+    <a href="{% url 'publicacion_list' %}">
+        <button id="btn" type="button">Volver a la lista de publicaciones</button>
+    </a>
 </body>
 </html>
