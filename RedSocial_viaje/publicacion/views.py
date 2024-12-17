@@ -3,15 +3,13 @@ from .models import Publicacion
 from usuario.models import Usuario
 from destino.models import Destino
 import requests
-from django.contrib.auth.forms import UserCreationForm
+from usuario.forms import RegistroUsuarioForm
 from django.contrib.auth.decorators import login_required
-
 
 # Create your views here.
 
 
 # Listar publicaciones
-@login_required
 @login_required
 def publicacion_list(request):
     """
@@ -28,30 +26,10 @@ def publicacion_list(request):
 def publicacion_create(request):
     if request.method == 'POST':
         texto = request.POST.get('texto')
-        texto = request.POST.get('texto')
         destino_id = request.POST.get('destino_id')
         nueva_ciudad = request.POST.get('nueva_ciudad')
         nuevo_pais = request.POST.get('nuevo_pais')
-        nueva_ciudad = request.POST.get('nueva_ciudad')
-        nuevo_pais = request.POST.get('nuevo_pais')
 
-        # Verificar si el usuario ingresó un destino existente o uno nuevo
-        if destino_id:
-            destino = get_object_or_404(Destino, id=destino_id)
-        elif nueva_ciudad and nuevo_pais:
-            destino, created = Destino.objects.get_or_create(ciudad=nueva_ciudad, pais=nuevo_pais)
-        else:
-            return render(request, 'publicacion_form.html', {
-                'error': 'Debe seleccionar un destino o ingresar uno nuevo.',
-                'destinos': Destino.objects.all()
-            })
-
-        # Crear la publicación
-        Publicacion.objects.create(
-            usuario=request.user,
-            destino=destino,
-            texto=texto
-        )
         # Verificar si el usuario ingresó un destino existente o uno nuevo
         if destino_id:
             destino = get_object_or_404(Destino, id=destino_id)
@@ -72,16 +50,10 @@ def publicacion_create(request):
         return redirect('publicacion_list')
 
     # Enviar destinos existentes al formulario
-
-    # Enviar destinos existentes al formulario
     destinos = Destino.objects.all()
     return render(request, 'publicacion_form.html', {'destinos': destinos})
 
-    return render(request, 'publicacion_form.html', {'destinos': destinos})
-
-
 # Editar publicación
-@login_required
 @login_required
 def publicacion_edit(request, pk):
     """
@@ -112,7 +84,6 @@ def publicacion_edit(request, pk):
 
 # Eliminar publicación
 @login_required
-@login_required
 def publicacion_delete(request, pk):
     """
     Permite eliminar una publicación.
@@ -137,17 +108,13 @@ def publicacion_delete(request, pk):
     return render(request, 'publicacion_confirm_delete.html', {'publicacion': publicacion})
 
 @login_required
-@login_required
 def publicacion_search(request):
-    # URL de la API
-    api_url = 'http://127.0.0.1:8000/api/publicaciones/filtrar/'  
     # URL de la API
     api_url = 'http://127.0.0.1:8000/api/publicaciones/filtrar/'  
     params = {}
 
     # Parámetros de búsqueda desde GET
     if 'usuario' in request.GET and request.GET['usuario']:
-    # Parámetros de búsqueda desde GET
         params['usuario'] = request.GET['usuario']
     if 'destino' in request.GET and request.GET['destino']:
         params['destino'] = request.GET['destino']
@@ -177,12 +144,13 @@ def publicacion_search(request):
         }
     )
 
+
 def registro(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = RegistroUsuarioForm(request.POST)  # Usar el formulario personalizado
         if form.is_valid():
-            form.save()
-            return redirect('/accounts/login/')  # Redirigir al login tras el registro
+            form.save()  # Guarda el nuevo usuario
+            return redirect('/accounts/login/')  # Redirige al login tras el registro
     else:
-        form = UserCreationForm()
+        form = RegistroUsuarioForm()
     return render(request, 'registration/register.html', {'form': form})

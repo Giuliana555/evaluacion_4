@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Destinos</title>
+</head>
+<body>
+    <h1>Lista de Destinos</h1>
+    <a href="{% url 'destino_create' %}">
+        <button>Crear Nuevo Destino</button>
+    </a>
+    <br><br>
+
+    {% if destinos %}
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>País</th>
+                    <th>Ciudad</th>
+                    <th>Descripción</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for destino in destinos %}
+                    <tr>
+                        <td>{{ destino.id }}</td>
+                        <td>{{ destino.pais }}</td>
+                        <td>{{ destino.ciudad }}</td>
+                        <td>{{ destino.descripcion }}</td>
+                        <td>
+                            <a href="{% url 'destino_edit' destino.id %}">Editar</a> |
+                            <a href="{% url 'destino_delete' destino.id %}">Eliminar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hay destinos disponibles.</p>
+    {% endif %}
+</body>
+</html>
