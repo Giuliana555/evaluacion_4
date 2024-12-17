@@ -3,12 +3,6 @@ from .models import Usuario
 
 # Create your views here.
 
-
-# Listar usuarios
-"""def usuario_list(request):
-    usuarios = Usuario.objects.all()
-    return render(request, 'usuario/usuario_list.html', {'usuarios': usuarios})"""
-
 # Crear usuario
 def usuario_create(request):
     if request.method == 'POST':

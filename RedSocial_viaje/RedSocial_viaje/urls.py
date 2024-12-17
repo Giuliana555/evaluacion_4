@@ -19,6 +19,10 @@ from django.urls import path, include
 from django.views.generic import RedirectView
 from django.contrib.auth.views import LogoutView
 from publicacion.views import registro
+<<<<<<< HEAD
+=======
+
+>>>>>>> 49b9acdcbb373c37c908215009c43882f55a94c3
 
 urlpatterns = [
     path('admin/', admin.site.urls),
