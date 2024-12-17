@@ -66,13 +66,20 @@ def publicacion_edit(request, pk):
         # Redirigir si no tiene permiso
         return redirect('publicacion_list')
 
+
+    if request.user != publicacion.usuario and not request.user.is_superuser:
+        # Redirigir si no tiene permiso
+        return redirect('publicacion_list')
+
     if request.method == 'POST':
         publicacion.destino_id = request.POST.get('destino_id')
         publicacion.texto = request.POST.get('texto')
         publicacion.save()
         return redirect('publicacion_list')
 
+
     destinos = Destino.objects.all()
+    return render(request, 'publicacion_form.html', {'publicacion': publicacion, 'destinos': destinos})
     return render(request, 'publicacion_form.html', {'publicacion': publicacion, 'destinos': destinos})
 
 # Eliminar publicación
@@ -88,9 +95,15 @@ def publicacion_delete(request, pk):
         # Redirigir si no tiene permiso
         return redirect('publicacion_list')
 
+
+    if request.user != publicacion.usuario and not request.user.is_superuser:
+        # Redirigir si no tiene permiso
+        return redirect('publicacion_list')
+
     if request.method == 'POST':
         publicacion.delete()
         return redirect('publicacion_list')
+
 
     return render(request, 'publicacion_confirm_delete.html', {'publicacion': publicacion})
 
@@ -131,6 +144,10 @@ def publicacion_search(request):
         }
     )
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 468568126d604601eddffd7c0319a4f2207500b1
 def registro(request):
     if request.method == 'POST':
         form = RegistroUsuarioForm(request.POST)  # Usar el formulario personalizado
