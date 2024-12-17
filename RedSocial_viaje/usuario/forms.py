@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import Usuario
 import uuid
 
+
 class RegistroUsuarioForm(UserCreationForm):
     class Meta:
         model = Usuario
@@ -15,3 +16,5 @@ class RegistroUsuarioForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+

@@ -1,0 +1,122 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #eaf7e1; /* Fondo suave en verde claro */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+h1 {
+    color: #2c6b2f; /* Verde oscuro para el título */
+    margin-top: 20px;
+}
+
+h2 {
+    color: #388e3c; /* Verde medio para subtítulos */
+    margin-top: 20px;
+}
+
+/* Formulario de búsqueda */
+form {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 60%;
+    max-width: 600px;
+    margin-top: 20px;
+}
+
+label {
+    font-weight: bold;
+    color: #388e3c; /* Verde medio para las etiquetas */
+    margin-bottom: 8px;
+    display: inline-block;
+    text-align: left;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #b2d8b2; /* Borde verde claro */
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+}
+
+button[type="submit"] {
+    background-color: #388e3c; /* Verde medio para el botón de búsqueda */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button[type="submit"]:hover {
+    background-color: #2e7d32; /* Verde oscuro para hover */
+    transform: scale(1.1); /* Efecto de aumento al pasar el mouse */
+}
+
+/* Estilo para los resultados de la búsqueda */
+table {
+    width: 80%;
+    max-width: 1000px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+table, th, td {
+    border: 1px solid #b2d8b2; /* Borde verde claro */
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #2e7d32; /* Fondo verde oscuro para los encabezados */
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #dcedc8; /* Fila alternativa en verde claro */
+}
+
+td {
+    font-size: 16px;
+}
+
+button[type="button"] {
+    background-color: #388e3c; /* Verde medio para el botón de volver */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button[type="button"]:hover {
+    background-color: #2e7d32; /* Verde oscuro para hover */
+    transform: scale(1.1); /* Efecto de aumento al pasar el mouse */
+}
+
+/* Estilo para el mensaje cuando no hay resultados */
+p {
+    color: #2c6b2f; /* Verde oscuro para el mensaje de "no se encontraron publicaciones" */
+    font-weight: bold;
+    margin-top: 20px;
+}

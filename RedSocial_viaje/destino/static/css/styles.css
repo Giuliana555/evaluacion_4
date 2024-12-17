@@ -1,0 +1,102 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #eaf7e1; /* Fondo suave en verde claro */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    text-align: center;
+}
+
+h1 {
+    color: #2c6b2f; /* Verde oscuro para el título */
+}
+
+/* Contenedor principal */
+.container {
+    width: 80%;
+    max-width: 1200px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+/* Estilo para la tabla */
+table {
+    width: 80%; /* Limita el ancho de la tabla al 80% del contenedor */
+    max-width: 1000px; /* Define un ancho máximo para la tabla */
+    margin: 20px auto; /* Centra la tabla */
+    border-collapse: separate; /* Para permitir bordes redondeados */
+    border-spacing: 0; /* Elimina el espacio entre las celdas */
+    border-radius: 8px; /* Bordes redondeados para la tabla */
+    overflow: hidden; /* Asegura que los bordes redondeados se vean correctamente */
+}
+
+table, th, td {
+    border: 1px solid #b2d8b2; /* Borde verde claro */
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #2e7d32; /* Fondo verde oscuro para los encabezados */
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #dcedc8; /* Fila alternativa en verde claro */
+}
+
+/* Estilo para los botones */
+button {
+    background-color: #388e3c; /* Verde medio para los botones */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #2e7d32; /* Verde oscuro para hover */
+    transform: scale(1.1); /* Efecto de aumento al pasar el mouse */
+
+}
+
+/* Estilo para los enlaces dentro de las acciones */
+a {
+    text-decoration: none;
+    color: #388e3c; /* Verde medio para los enlaces */
+    margin: 0 5px;
+}
+
+a:hover {
+    color: #2e7d32; /* Verde oscuro para hover */
+}
+
+/* Estilos para la fila de acciones */
+td a {
+    margin-right: 10px;
+}
+
+.buttons-right {
+    display: flex;
+    justify-content: flex-end; /* Alinea los botones a la derecha */
+    gap: 10px; /* Espacio entre los botones */
+    margin-top: 20px; /* Espacio superior para los botones */
+}
+
+#btn{
+    display: flex;
+    justify-content: flex-start;
+}
