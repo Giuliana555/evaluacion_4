@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'publicacion',
     'destino',
     'api_viajes',
+    'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 AUTH_USER_MODEL = 'usuario.Usuario'
@@ -61,7 +63,7 @@ ROOT_URLCONF = 'RedSocial_viaje.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR /'templates'],
+        'DIRS': [], 
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -73,6 +75,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'RedSocial_viaje.wsgi.application'
 
@@ -128,5 +131,16 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
+
+LOGIN_URL = '/accounts/login/'  
+LOGIN_REDIRECT_URL = '/publicacion/' 
+LOGOUT_REDIRECT_URL = '/accounts/login/'  
+
 
 
