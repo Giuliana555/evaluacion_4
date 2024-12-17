@@ -17,21 +17,36 @@ def publicacion_list(request):
 
 # Crear publicación
 @login_required
+@login_required
 def publicacion_create(request):
     if request.method == 'POST':
-        usuario_id = request.POST.get('usuario_id')
-        destino_id = request.POST.get('destino_id')
         texto = request.POST.get('texto')
+        destino_id = request.POST.get('destino_id')
+        nueva_ciudad = request.POST.get('nueva_ciudad')
+        nuevo_pais = request.POST.get('nuevo_pais')
 
-        usuario = get_object_or_404(Usuario, id=usuario_id)
-        destino = get_object_or_404(Destino, id=destino_id)
+        # Verificar si el usuario ingresó un destino existente o uno nuevo
+        if destino_id:
+            destino = get_object_or_404(Destino, id=destino_id)
+        elif nueva_ciudad and nuevo_pais:
+            destino, created = Destino.objects.get_or_create(ciudad=nueva_ciudad, pais=nuevo_pais)
+        else:
+            return render(request, 'publicacion_form.html', {
+                'error': 'Debe seleccionar un destino o ingresar uno nuevo.',
+                'destinos': Destino.objects.all()
+            })
 
-        # Crear instancia de Publicacion y guardar en la base de datos
-        Publicacion.objects.create(usuario=usuario, destino=destino, texto=texto)
+        # Crear la publicación
+        Publicacion.objects.create(
+            usuario=request.user,
+            destino=destino,
+            texto=texto
+        )
         return redirect('publicacion_list')
-    usuarios = Usuario.objects.all()
+
+    # Enviar destinos existentes al formulario
     destinos = Destino.objects.all()
-    return render(request, 'publicacion_form.html', {'usuarios': usuarios, 'destinos': destinos})
+    return render(request, 'publicacion_form.html', {'destinos': destinos})
 
 # Editar publicación
 @login_required
@@ -58,26 +73,41 @@ def publicacion_delete(request, pk):
 
 @login_required
 def publicacion_search(request):
-    # URL correcta basada en tus urls.py
-    api_url = 'http://127.0.0.1:8000/publicaciones/filtrar/'  
+    # URL de la API
+    api_url = 'http://127.0.0.1:8000/api/publicaciones/filtrar/'  
     params = {}
 
-    # Recupera los parámetros de búsqueda desde GET
-    if 'usuario' in request.GET:
+    # Parámetros de búsqueda desde GET
+    if 'usuario' in request.GET and request.GET['usuario']:
         params['usuario'] = request.GET['usuario']
-    if 'destino' in request.GET:
+    if 'destino' in request.GET and request.GET['destino']:
         params['destino'] = request.GET['destino']
 
     # Llamada a la API
-    response = requests.get(api_url, params=params)
+    try:
+        response = requests.get(api_url, params=params)
+        if response.status_code == 200:
+            publicaciones = response.json()
+        else:
+            publicaciones = []  # Si la API falla
+    except Exception as e:
+        print(e)
+        publicaciones = []  # Manejo de errores en la API
 
-    # Verifica si la API responde correctamente
-    if response.status_code == 200:
-        publicaciones = response.json()
-    else:
-        publicaciones = []  # Si la API falla, devuelve una lista vacía
+    # Obtener usuarios y destinos
+    usuarios = Usuario.objects.all()
+    destinos = Destino.objects.all()
 
-    return render(request, 'publicacion_search.html', {'publicaciones': publicaciones})
+    return render(
+        request, 
+        'publicacion_search.html', 
+        {
+            'publicaciones': publicaciones,
+            'usuarios': usuarios,
+            'destinos': destinos
+        }
+    )
+
 
 def registro(request):
     if request.method == 'POST':

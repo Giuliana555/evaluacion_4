@@ -4,7 +4,7 @@ from .models import Destino
 # Listar destinos
 def destino_list(request):
     destinos = Destino.objects.all()
-    return render(request, 'destino/destino_list.html', {'destinos': destinos})
+    return render(request, 'destino_list.html', {'destinos': destinos})
 
 # Crear destino
 def destino_create(request):
@@ -16,7 +16,7 @@ def destino_create(request):
         # Crear instancia de Destino y guardar en la base de datos
         Destino.objects.create(pais=pais, ciudad=ciudad, descripcion=descripcion)
         return redirect('destino_list')
-    return render(request, 'destino/destino_form.html')
+    return render(request, 'destino_form.html')
 
 # Editar destino
 def destino_edit(request, pk):
@@ -27,7 +27,7 @@ def destino_edit(request, pk):
         destino.descripcion = request.POST.get('descripcion')
         destino.save()
         return redirect('destino_list')
-    return render(request, 'destino/destino_form.html', {'destino': destino})
+    return render(request, 'destino_form.html', {'destino': destino})
 
 # Eliminar destino
 def destino_delete(request, pk):
@@ -35,4 +35,4 @@ def destino_delete(request, pk):
     if request.method == 'POST':
         destino.delete()
         return redirect('destino_list')
-    return render(request, 'destino/destino_confirm_delete.html', {'destino': destino})
+    return render(request, 'destino_confirm_delete.html', {'destino': destino})

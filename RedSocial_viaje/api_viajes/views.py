@@ -9,11 +9,13 @@ from django.http import JsonResponse
 from .models import Token
 
 
+
 @api_view(['GET'])
 def listar_destinos(request):
     destinos = Destino.objects.all()
     serializer = DestinoSerializer(destinos, many=True)
     return Response(serializer.data)
+
 
 
 @api_view(['GET'])
@@ -32,6 +34,7 @@ def filtrar_publicaciones(request):
     return Response(serializer.data)
 
 
+
 def obtener_token(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -42,5 +45,6 @@ def obtener_token(request):
             token, created = Token.objects.get_or_create(user=user)
             return JsonResponse({'token': token.key}, status=200)
         return JsonResponse({'error': 'Credenciales inválidas'}, status=400)
+
 
 # Create your views here.
