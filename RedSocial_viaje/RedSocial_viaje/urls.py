@@ -16,20 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.views.generic import RedirectView
-from django.contrib.auth.views import LogoutView
-from publicacion.views import registro
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),  # Rutas de autenticación
-    path('accounts/register/', registro, name='register'),  # Registro
-    path('accounts/logout/', LogoutView.as_view(next_page='/accounts/login/'), name='logout'),  # Logout
-    path('', RedirectView.as_view(url='/accounts/login/', permanent=False)),  # Redirige a login
-    path('usuario/', include('usuario.urls')),
-    path('publicacion/', include('publicacion.urls')),
-    path('destino/', include('destino.urls')),
+    path('usuario/', include('usuario.urls')),  # Rutas de la app "usuario"
+    path('publicacion/', include('publicacion.urls')),  # Rutas de la app "publicacion"
+    path('destino/', include('destino.urls')),  # Rutas de la app "destino"
     path('api/', include('api_viajes.urls')),
 ]
-
-
