@@ -12,11 +12,7 @@ from django.contrib.auth.decorators import login_required
 # Listar publicaciones
 @login_required
 def publicacion_list(request):
-    """
-    Muestra todas las publicaciones. 
-    Los botones de editar/eliminar se gestionan desde los templates.
-    """
-    publicaciones = Publicacion.objects.all()  # Todos los usuarios ven todas las publicaciones
+    publicaciones = Publicacion.objects.all() 
     return render(request, 'publicacion_list.html', {'publicaciones': publicaciones})
 
 
@@ -107,6 +103,9 @@ def publicacion_search(request):
         params['usuario'] = request.GET['usuario']
     if 'destino' in request.GET and request.GET['destino']:
         params['destino'] = request.GET['destino']
+    
+    page_size = request.GET.get('page_size', '5')  # Valor por defecto 5
+    params['page_size'] = page_size
 
     # Llamada a la API
     try:
