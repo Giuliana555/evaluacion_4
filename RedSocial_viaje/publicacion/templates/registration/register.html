@@ -6,11 +6,24 @@
 </head>
 <body>
     <h2>Registro</h2>
+
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+
+        {% if form.errors %}
+            <ul>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {{ form.as_p }}  <!-- Esta línea sigue renderizando el formulario -->
         <button type="submit">Registrarse</button>
     </form>
+
     <p>¿Ya tienes cuenta? <a href="{% url 'login' %}">Inicia sesión aquí</a></p>
 </body>
 </html>
+

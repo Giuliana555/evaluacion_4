@@ -5,12 +5,34 @@
     <title>Lista de Publicaciones</title>
 </head>
 <body>
+    <!-- Encabezado con navegación -->
+    <header>
+        {% if user.is_authenticated %}
+            <p>Bienvenido, {{ user.nombre}}</p>
+            <nav>
+                <a href="{% url 'publicacion_create' %}">Nueva Publicación</a>
+                <!-- Botón para Filtrar Publicaciones -->
+                <a href="{% url 'publicacion_search' %}" style="margin-left: 10px;">
+                    Filtrar Publicaciones
+                </a>
+                <!-- Botón de Cerrar Sesión -->
+                <form action="{% url 'logout' %}" method="POST" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit">Cerrar Sesión</button>
+                </form>
+            </nav>
+        {% else %}
+            <nav>
+                <a href="{% url 'login' %}">Iniciar Sesión</a>
+                <a href="{% url 'register' %}">Registrarse</a>
+            </nav>
+        {% endif %}
+    </header>
+    <!-- Contenido principal -->
     <h1>Lista de Publicaciones</h1>
-    <a href="{% url 'publicacion_create' %}">Crear Nueva Publicación</a>
     <table border="1">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Usuario</th>
                 <th>Destino</th>
                 <th>Texto</th>
@@ -20,21 +42,21 @@
         <tbody>
             {% for publicacion in publicaciones %}
                 <tr>
-                    <td>{{ publicacion.id }}</td>
-                    <td>{{ publicacion.usuario }}</td>
+                    <td>{{ publicacion.usuario.nombre }}</td>
                     <td>{{ publicacion.destino }}</td>
                     <td>{{ publicacion.texto }}</td>
                     <td>
-                        <a href="{% url 'publicacion_edit' publicacion.id %}">Editar</a>
-                        <a href="{% url 'publicacion_delete' publicacion.id %}">Eliminar</a>
+                        {% if request.user == publicacion.usuario or request.user.is_superuser %}
+                            <a href="{% url 'publicacion_edit' publicacion.id %}">Editar</a>
+                            <a href="{% url 'publicacion_delete' publicacion.id %}">Eliminar</a>
+                        {% endif %}
                     </td>
                 </tr>
             {% empty %}
                 <tr>
-                    <td colspan="5">No hay publicaciones disponibles.</td>
+                    <td colspan="4">No hay publicaciones disponibles.</td>
                 </tr>
             {% endfor %}
-            <a href="{% url 'publicacion_search' %}">Buscar Publicaciones</a>
         </tbody>
     </table>
 </body>
