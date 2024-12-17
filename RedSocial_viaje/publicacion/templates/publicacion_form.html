@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Publicación</title>
+</head>
+<body>
+    <h1>Crear Publicación</h1>
+    <form method="POST">
+        {% csrf_token %}
+
+        <!-- Texto de la publicación -->
+        <label for="texto">Texto:</label>
+        <textarea name="texto" id="texto" required>{{ publicacion.texto|default_if_none:'' }}</textarea>
+        <br>
+
+        <!-- Selección de destino existente -->
+        <label for="destino_id">Seleccionar un destino existente:</label>
+        <select name="destino_id" id="destino_id">
+            <option value="">-- Seleccionar --</option>
+            {% for destino in destinos %}
+                <option value="{{ destino.id }}">{{ destino.ciudad }}, {{ destino.pais }}</option>
+            {% endfor %}
+        </select>
+        <br>
+
+        <!-- Opción para agregar un nuevo destino -->
+        <p>O ingresar un destino nuevo:</p>
+        <label for="nueva_ciudad">Ciudad:</label>
+        <input type="text" name="nueva_ciudad" id="nueva_ciudad">
+        <br>
+        <label for="nuevo_pais">País:</label>
+        <input type="text" name="nuevo_pais" id="nuevo_pais">
+        <br>
+
+        <button type="submit">Crear Publicación</button>
+        <a href="{% url 'publicacion_list' %}">Cancelar</a>
+    </form>
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+</body>
+</html>
