@@ -7,11 +7,8 @@ from publicacion.models import Publicacion
 from django.contrib.auth import authenticate
 from django.http import JsonResponse
 from .models import Token
-<<<<<<< HEAD
-=======
 
 
->>>>>>> e431b4f308c4ade594ee16bd9b3b60f0b7ad5787
 
 @api_view(['GET'])
 def listar_destinos(request):
@@ -49,8 +46,4 @@ def obtener_token(request):
             return JsonResponse({'token': token.key}, status=200)
         return JsonResponse({'error': 'Credenciales inválidas'}, status=400)
 
-<<<<<<< HEAD
-=======
-
->>>>>>> e431b4f308c4ade594ee16bd9b3b60f0b7ad5787
 # Create your views here.

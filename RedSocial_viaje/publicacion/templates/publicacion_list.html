@@ -8,22 +8,12 @@
     <!-- Encabezado con navegación -->
     <header>
         {% if user.is_authenticated %}
-<<<<<<< HEAD
-            <p>Bienvenido, {{ user.username }}</p>
-            <nav>
-                <a href="{% url 'publicacion_create' %}">Nueva Publicación</a>
-                <!-- Botón para Filtrar Publicaciones -->
-                <a href="{% url 'publicacion_search' %}" style="margin-left: 10px;">
-                    Filtrar Publicaciones
-                </a>
-=======
             <p>Bienvenido, {{ user.nombre}}</p>
             <nav>
                 <a href="{% url 'publicacion_create' %}">Nueva Publicación</a>
                 <!-- Botón para Filtrar Publicaciones -->
                 <a href="{% url 'publicacion_search' %}" style="margin-left: 10px;">Filtrar Publicaciones</a>
                 <a href="{% url 'destino_list' %}" style="margin-left: 10px;">Ver Lista de Destinos</a>
->>>>>>> e431b4f308c4ade594ee16bd9b3b60f0b7ad5787
                 <!-- Botón de Cerrar Sesión -->
                 <form action="{% url 'logout' %}" method="POST" style="display: inline;">
                     {% csrf_token %}
@@ -37,11 +27,6 @@
             </nav>
         {% endif %}
     </header>
-<<<<<<< HEAD
-    
-
-=======
->>>>>>> e431b4f308c4ade594ee16bd9b3b60f0b7ad5787
     <!-- Contenido principal -->
     <h1>Lista de Publicaciones</h1>
     <table border="1">
@@ -56,11 +41,7 @@
         <tbody>
             {% for publicacion in publicaciones %}
                 <tr>
-<<<<<<< HEAD
-                    <td>{{ publicacion.usuario.username }}</td>
-=======
                     <td>{{ publicacion.usuario.nombre }}</td>
->>>>>>> e431b4f308c4ade594ee16bd9b3b60f0b7ad5787
                     <td>{{ publicacion.destino }}</td>
                     <td>{{ publicacion.texto }}</td>
                     <td>

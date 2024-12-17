@@ -30,10 +30,4 @@ urlpatterns = [
     path('publicacion/', include('publicacion.urls')),
     path('destino/', include('destino.urls')),
     path('api/', include('api_viajes.urls')),
-<<<<<<< HEAD
 ]
-
-
-=======
-]
->>>>>>> e431b4f308c4ade594ee16bd9b3b60f0b7ad5787

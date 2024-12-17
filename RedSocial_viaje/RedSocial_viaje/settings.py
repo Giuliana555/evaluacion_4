@@ -42,11 +42,7 @@ INSTALLED_APPS = [
     'destino',
     'api_viajes',
     'rest_framework',
-<<<<<<< HEAD
-    'rest_framework.authtoken',
-=======
     'rest_framework.authtoken'
->>>>>>> e431b4f308c4ade594ee16bd9b3b60f0b7ad5787
 ]
 
 AUTH_USER_MODEL = 'usuario.Usuario'
@@ -67,11 +63,7 @@ ROOT_URLCONF = 'RedSocial_viaje.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-<<<<<<< HEAD
-        'DIRS': [], 
-=======
         'DIRS': [],
->>>>>>> e431b4f308c4ade594ee16bd9b3b60f0b7ad5787
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -146,19 +138,11 @@ REST_FRAMEWORK = {
     )
 }
 
-<<<<<<< HEAD
-LOGIN_URL = '/accounts/login/'  
-LOGIN_REDIRECT_URL = '/publicacion/' 
-LOGOUT_REDIRECT_URL = '/accounts/login/'  
-
-
-=======
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
     )
 }
->>>>>>> e431b4f308c4ade594ee16bd9b3b60f0b7ad5787
 
 LOGIN_URL = '/accounts/login/'  
 LOGIN_REDIRECT_URL = '/publicacion/' 
