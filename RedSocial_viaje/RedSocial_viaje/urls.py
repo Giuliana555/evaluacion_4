@@ -20,6 +20,7 @@ from django.views.generic import RedirectView
 from django.contrib.auth.views import LogoutView
 from publicacion.views import registro
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),  # Rutas de autenticación

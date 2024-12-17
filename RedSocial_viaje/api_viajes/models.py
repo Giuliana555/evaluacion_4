@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 import secrets
 
+
 class Token(models.Model):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
@@ -17,8 +18,5 @@ class Token(models.Model):
 
     def __str__(self):
         return f"Token for {self.user.username}"
-
-
-
 
 # Create your models here.
