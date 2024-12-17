@@ -10,7 +10,7 @@ from .models import Token
 from .utils import token_required
 
 
-@token_required
+
 @api_view(['GET'])
 def listar_destinos(request):
     destinos = Destino.objects.all()
@@ -18,7 +18,7 @@ def listar_destinos(request):
     return Response(serializer.data)
 
 
-@token_required
+
 @api_view(['GET'])
 def filtrar_publicaciones(request):
     usuario_id = request.query_params.get('usuario', None)

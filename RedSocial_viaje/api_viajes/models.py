@@ -4,9 +4,9 @@ import secrets
 
 class Token(models.Model):
     user = models.OneToOneField(
-        settings.AUTH_USER_MODEL,  # Usar el modelo personalizado de usuario
+        settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        related_name='auth_token'
+        related_name='custom_auth_token'  # Cambia el related_name
     )
     key = models.CharField(max_length=40, unique=True, blank=True)
 
@@ -17,6 +17,7 @@ class Token(models.Model):
 
     def __str__(self):
         return f"Token for {self.user.username}"
+
 
 
 
