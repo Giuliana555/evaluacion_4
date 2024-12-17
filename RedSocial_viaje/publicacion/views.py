@@ -3,7 +3,7 @@ from .models import Publicacion
 from usuario.models import Usuario
 from destino.models import Destino
 import requests
-from django.contrib.auth.forms import UserCreationForm
+from usuario.forms import RegistroUsuarioForm
 from django.contrib.auth.decorators import login_required
 <<<<<<< HEAD
 
@@ -149,10 +149,10 @@ def publicacion_search(request):
 
 def registro(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = RegistroUsuarioForm(request.POST)  # Usar el formulario personalizado
         if form.is_valid():
-            form.save()
-            return redirect('/accounts/login/')  # Redirigir al login tras el registro
+            form.save()  # Guarda el nuevo usuario
+            return redirect('/accounts/login/')  # Redirige al login tras el registro
     else:
-        form = UserCreationForm()
+        form = RegistroUsuarioForm()
     return render(request, 'registration/register.html', {'form': form})
