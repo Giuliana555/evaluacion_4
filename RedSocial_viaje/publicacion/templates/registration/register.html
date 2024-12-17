@@ -1,30 +1,33 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Registro</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
 </head>
 <body>
-    <h2>Registro</h2>
+    <div class="register-container">
+        <h2>Registro</h2>
 
-    <form method="post">
-        {% csrf_token %}
+        <form method="post" class="register-form">
+            {% csrf_token %}
 
-        {% if form.errors %}
-            <ul>
-                {% for field in form %}
-                    {% for error in field.errors %}
-                        <li>{{ error }}</li>
+            {% if form.errors %}
+                <ul class="error-list">
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
                     {% endfor %}
-                {% endfor %}
-            </ul>
-        {% endif %}
-        {{ form.as_p }}  <!-- Esta línea sigue renderizando el formulario -->
-        
-        <button type="submit">Registrarse</button>
-    </form>
+                </ul>
+            {% endif %}
+            {{ form.as_p }}  <!-- Esta línea sigue renderizando el formulario -->
+            
+            <button type="submit" class="register-button">Registrarse</button>
+        </form>
 
-    <p>¿Ya tienes cuenta? <a href="{% url 'login' %}">Inicia sesión aquí</a></p>
+        <p class="login-link">¿Ya tienes cuenta? <a href="{% url 'login' %}">Inicia sesión aquí</a></p>
+    </div>
 </body>
 </html>
-

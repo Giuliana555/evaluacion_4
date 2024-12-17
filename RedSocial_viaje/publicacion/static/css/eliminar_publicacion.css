@@ -1,0 +1,84 @@
+/* General styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e6ffe9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Contenedor principal */
+.container {
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    max-width: 600px;
+    width: 100%;
+    padding: 20px;
+}
+
+/* Contenido */
+.content {
+    text-align: center;
+}
+
+/* Título */
+h1 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Detalles de la publicación */
+.publicacion-details p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+/* Botones - Contenedor */
+.buttons {
+    margin-top: 20px;
+    display: flex; /* Utilizamos flex para alinear los botones */
+    justify-content: center; /* Centrar los botones */
+    gap: 20px; /* Espacio entre los botones */
+}
+
+/* Estilo general de los botones */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Botón de eliminar */
+.btn-danger {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c03a2b;
+    transform: scale(1.05);
+}
+
+/* Botón de cancelar */
+.btn-cancel {
+    background-color: #95a5a6;
+    color: white;
+}
+
+.btn-cancel:hover {
+    background-color: #7f8c8d;
+    transform: scale(1.05);
+}

@@ -1,0 +1,90 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #eaf7e1; /* Fondo suave en verde claro */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    text-align: center;
+}
+
+h1 {
+    color: #2c6b2f; /* Verde oscuro para el título */
+}
+
+/* Contenedor principal */
+form {
+    width: 80%;
+    max-width: 800px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: left;
+}
+
+/* Estilo para las etiquetas y entradas */
+label {
+    font-weight: bold;
+    color: #2c6b2f; /* Verde oscuro para las etiquetas */
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    border: 1px solid #b2d8b2; /* Borde verde claro */
+    border-radius: 4px;
+    box-sizing: border-box; /* Para que el padding no afecte el ancho */
+}
+
+textarea {
+    height: 150px; /* Altura para el área de texto */
+}
+
+/* Estilo para los botones */
+button {
+    background-color: #388e3c; /* Verde medio para los botones */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #2e7d32; /* Verde oscuro para hover */
+    transform: scale(1.1); /* Efecto de aumento al pasar el mouse */
+}
+
+/* Estilo para el enlace de cancelar */
+a {
+    text-decoration: none;
+    color: #388e3c; /* Verde medio para los enlaces */
+    margin-top: 10px;
+    display: inline-block;
+}
+
+a:hover {
+    color: #2e7d32; /* Verde oscuro para hover */
+}
+
+/* Estilo para el mensaje de error */
+p[style="color: red;"] {
+    color: red;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* Estilo para los elementos de selección */
+select {
+    padding: 8px;
+    margin: 8px 0;
+    border: 1px solid #b2d8b2;
+    border-radius: 4px;
+}
