@@ -13,8 +13,19 @@
                 <a href="{% url 'publicacion_create' %}">Nueva Publicación</a>
                 <!-- Botón para Filtrar Publicaciones -->
                 <a href="{% url 'publicacion_search' %}" style="margin-left: 10px;">Filtrar Publicaciones</a>
-                <a href="{% url 'destino_list' %}" style="margin-left: 10px;">Ver Lista de Destinos</a>
-                <!-- Botón de Cerrar Sesión -->
+
+                {% if user.is_superuser %}
+                    <a href="{% url 'destino_list' %}" style="margin-left: 10px;">Ver Lista de Destinos</a>
+                    <a href="{% url 'usuario_list' %}" style="margin-left: 10px; color: white; background-color: #28a745; padding: 5px 10px; text-decoration: none; border-radius: 5px;">
+                        Gestionar Usuarios
+                    </a>
+                {% else %}
+                    <!-- Los usuarios normales ven este botón -->
+                    <a href="{% url 'usuario_edit' user.id %}" style="margin-left: 10px; color: white; background-color: #17a2b8; padding: 5px 10px; text-decoration: none; border-radius: 5px;">
+                        Editar Mi Perfil
+                    </a>
+                {% endif %}
+
                 <form action="{% url 'logout' %}" method="POST" style="display: inline;">
                     {% csrf_token %}
                     <button type="submit">Cerrar Sesión</button>

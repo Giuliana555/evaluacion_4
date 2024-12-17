@@ -12,16 +12,11 @@ from django.contrib.auth.decorators import login_required
 # Listar publicaciones
 @login_required
 def publicacion_list(request):
-    """
-    Muestra todas las publicaciones. 
-    Los botones de editar/eliminar se gestionan desde los templates.
-    """
-    publicaciones = Publicacion.objects.all()  # Todos los usuarios ven todas las publicaciones
+    publicaciones = Publicacion.objects.all() 
     return render(request, 'publicacion_list.html', {'publicaciones': publicaciones})
 
 
 # Crear publicación
-@login_required
 @login_required
 def publicacion_create(request):
     if request.method == 'POST':
@@ -66,11 +61,6 @@ def publicacion_edit(request, pk):
         # Redirigir si no tiene permiso
         return redirect('publicacion_list')
 
-
-    if request.user != publicacion.usuario and not request.user.is_superuser:
-        # Redirigir si no tiene permiso
-        return redirect('publicacion_list')
-
     if request.method == 'POST':
         publicacion.destino_id = request.POST.get('destino_id')
         publicacion.texto = request.POST.get('texto')
@@ -80,7 +70,7 @@ def publicacion_edit(request, pk):
 
     destinos = Destino.objects.all()
     return render(request, 'publicacion_form.html', {'publicacion': publicacion, 'destinos': destinos})
-    return render(request, 'publicacion_form.html', {'publicacion': publicacion, 'destinos': destinos})
+
 
 # Eliminar publicación
 @login_required
@@ -90,11 +80,6 @@ def publicacion_delete(request, pk):
     Restricción: Solo el autor o un superusuario pueden eliminar.
     """
     publicacion = get_object_or_404(Publicacion, pk=pk)
-
-    if request.user != publicacion.usuario and not request.user.is_superuser:
-        # Redirigir si no tiene permiso
-        return redirect('publicacion_list')
-
 
     if request.user != publicacion.usuario and not request.user.is_superuser:
         # Redirigir si no tiene permiso
@@ -118,6 +103,9 @@ def publicacion_search(request):
         params['usuario'] = request.GET['usuario']
     if 'destino' in request.GET and request.GET['destino']:
         params['destino'] = request.GET['destino']
+    
+    page_size = request.GET.get('page_size', '5')  # Valor por defecto 5
+    params['page_size'] = page_size
 
     # Llamada a la API
     try:
@@ -143,7 +131,6 @@ def publicacion_search(request):
             'destinos': destinos
         }
     )
-
 
 def registro(request):
     if request.method == 'POST':
