@@ -92,7 +92,6 @@ form button {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
-    margin-left: 10px;
 }
 
 form button:hover {
