@@ -11,7 +11,7 @@ from rest_framework.pagination import PageNumberPagination
 
 
 class PublicacionPagination(PageNumberPagination):
-    page_size_query_param = 'page_size'  # Permitir que el cliente pase el tamaño de página con el parámetro 'page_size'
+    page_size_query_param = 'page_size'
     max_page_size = 15
 
 @api_view(['GET'])

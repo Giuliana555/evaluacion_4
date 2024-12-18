@@ -1,12 +1,15 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Destino
+from django.contrib.auth.decorators import login_required
 
 # Listar destinos
+@login_required
 def destino_list(request):
     destinos = Destino.objects.all()
     return render(request, 'destino_list.html', {'destinos': destinos})
 
 # Crear destino
+@login_required
 def destino_create(request):
     if request.method == 'POST':
         pais = request.POST.get('pais')
@@ -19,6 +22,7 @@ def destino_create(request):
     return render(request, 'destino_form.html')
 
 # Editar destino
+@login_required
 def destino_edit(request, pk):
     destino = get_object_or_404(Destino, pk=pk)
     if request.method == 'POST':
@@ -30,6 +34,7 @@ def destino_edit(request, pk):
     return render(request, 'destino_form.html', {'destino': destino})
 
 # Eliminar destino
+@login_required
 def destino_delete(request, pk):
     destino = get_object_or_404(Destino, pk=pk)
     if request.method == 'POST':

@@ -75,10 +75,7 @@ def publicacion_edit(request, pk):
 # Eliminar publicación
 @login_required
 def publicacion_delete(request, pk):
-    """
-    Permite eliminar una publicación.
-    Restricción: Solo el autor o un superusuario pueden eliminar.
-    """
+
     publicacion = get_object_or_404(Publicacion, pk=pk)
 
     if request.user != publicacion.usuario and not request.user.is_superuser:
