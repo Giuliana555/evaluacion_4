@@ -46,6 +46,7 @@ cd red-social-viajes
 Antes de proceder, asegúrate de que tienes instalados Python y pip en tu sistema ejecutando los siguientes comandos en la terminal:
 - python --version
 - pip --version
+  
 Nota: Si usas Windows, también puedes probar con py --version para verificar Python.
 
 Una vez confirmada la instalación de Python y pip, instala las dependencias necesarias para ejecutar el proyecto utilizando el archivo requirements.txt:
