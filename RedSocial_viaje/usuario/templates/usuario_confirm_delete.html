@@ -1,7 +1,9 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/eliminar_usuario.css' %}">
     <title>Eliminar Usuario</title>
 </head>
 <body>
@@ -12,7 +14,7 @@
 
     <form method="POST">
         {% csrf_token %}
-        <button type="submit" style="color: red;">Eliminar</button>
+        <button type="submit">Eliminar</button>
         <a href="{% url 'usuario_list' %}">Cancelar</a>
     </form>
 </body>
