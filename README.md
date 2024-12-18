@@ -45,11 +45,8 @@ cd red-social-viajes
   Debes asegurate de tener instalado python y pip con los siguientes comandos:
    - py --version
    - pip -- version 
- luego debes instalar las siguientes bibliotecas para ejecutar el proyecto:
+ luego debes instalar lo siguiente para ejecutar el proyecto:
 
-- install django
-- pip install djangorestframework
-- pip install requests
 - pip install -r requeriments.txt
   
 Debes confirmar que  las dependencias se instalaron correctamente con el siguiente comando:
