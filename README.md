@@ -42,12 +42,14 @@ cd red-social-viajes
    
    
 3. Instalar dependencias
-  Debes asegurate de tener instalado python y pip con los siguientes comandos:
-   - py --version
-   - pip -- version 
- luego debes instalar lo siguiente para ejecutar el proyecto:
 
-- pip install -r requeriments.txt
+Antes de proceder, asegúrate de que tienes instalados Python y pip en tu sistema ejecutando los siguientes comandos en la terminal:
+- python --version
+- pip --version
+Nota: Si usas Windows, también puedes probar con py --version para verificar Python.
+
+Una vez confirmada la instalación de Python y pip, instala las dependencias necesarias para ejecutar el proyecto utilizando el archivo requirements.txt:
+- pip install -r requirements.txt
   
 Debes confirmar que  las dependencias se instalaron correctamente con el siguiente comando:
 -pip list
