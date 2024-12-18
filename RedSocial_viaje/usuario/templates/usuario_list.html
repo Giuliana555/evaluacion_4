@@ -1,7 +1,9 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/lista_usuario.css' %}">
     <title>Lista de Usuarios</title>
 </head>
 <body>
@@ -33,6 +35,6 @@
             {% endfor %}
         </tbody>
     </table>
-    <a href="{% url 'publicacion_list' %}">Volver a la Lista de Publicaciones</a>
+    <br><a href="{% url 'publicacion_list' %}">Volver a la Lista de Publicaciones</a>
 </body>
 </html>

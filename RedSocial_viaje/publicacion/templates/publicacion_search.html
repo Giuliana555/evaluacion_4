@@ -15,7 +15,7 @@
             <option value="">-- Todos los usuarios --</option>
             {% for usuario in usuarios %}
                 <option value="{{ usuario.id }}" {% if request.GET.usuario == usuario.id|stringformat:"s" %}selected{% endif %}>
-                    {{ usuario }}
+                    {{ usuario.nombre }} 
                 </option>
             {% endfor %}
         </select>
@@ -48,7 +48,6 @@
         <table border="1">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Usuario</th>
                     <th>Destino</th>
                     <th>Texto</th>
@@ -57,9 +56,8 @@
             <tbody>
                 {% for publicacion in publicaciones %}
                     <tr>
-                        <td>{{ publicacion.id }}</td>
-                        <td>{{ publicacion.usuario }}</td>
-                        <td>{{ publicacion.destino }}</td>
+                        <td>{{ publicacion.usuario}}</td>
+                        <td>{{ publicacion.destino}}</td>
                         <td>{{ publicacion.texto }}</td>
                     </tr>
                 {% endfor %}
