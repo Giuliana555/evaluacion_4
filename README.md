@@ -16,8 +16,9 @@ Este es un sitio web donde los usuarios pueden compartir sus experiencias de via
   - Ver todas las publicaciones existentes.
   - Gestionar la información de ciudades.
     
-  Para acceder a la vista de administrador, es necesario crear un superusuario. Ejecuta el siguiente comando para crear uno:
-  py manage.py createsuperuser
+  Para acceder a la vista de administrador, es necesario crear un superusuario.
+  Ejecuta el siguiente comando para crear uno:
+  -py manage.py createsuperuser
   Se te pedirá que ingreses un nombre de usuario, correo electrónico y contraseña
 
 ---
@@ -50,7 +51,7 @@ cd red-social-viajes
 - pip install djangorestframework
 - pip install requests
 - pip install -r requeriments.txt
-- 
+  
 Debes confirmar que  las dependencias se instalaron correctamente con el siguiente comando:
 -pip list
 
