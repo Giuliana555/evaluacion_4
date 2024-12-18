@@ -45,7 +45,6 @@ Ejecuta los siguientes comandos en la terminal:
 
 El servidor se iniciará en http://127.0.0.1:8000/.
 
-El servidor se iniciará en http://127.0.0.1:8000/.
 
 ## Uso de la API
 
